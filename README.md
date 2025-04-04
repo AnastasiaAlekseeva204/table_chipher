@@ -9,6 +9,7 @@
 - enhanced_table_cipher.py — логика шифрования
 - test_runner.py — самописные юнит-тесты
 - README.md — инструкция
+- main.py - проверка на работу файла
 
 ## Требования
 
@@ -18,5 +19,4 @@
 
 ```bash
 git clone https://github.com/AnastasiaAlekseeva204/table_chipher.git
-cd enhanced-table-cipher
-python3 test_runner.py
+python3 -m unittest test_runner.py -v - в терминал вводить

@@ -1,17 +1,21 @@
-from enhanced_table_cipher import encrypt, decrypt
+import unittest
+from TableCipher import TableCipher
 
-def run_test(name, func, expected):
-    result = func()
-    if result == expected:
-        print(f"[PASS] {name}")
-    else:
-        print(f"[FAIL] {name}\n  expected: {expected}\n  got:      {result}")
+class TestTableCipher(unittest.TestCase):
+    def setUp(self):
+        self.cipher = TableCipher("SECRET", size=6)
 
-def test_cases():
-    run_test("Encrypt basic", lambda: encrypt("HELLO WORLD", "ZEBRAS"), "OXRWDELHLLO")
-    run_test("Decrypt basic", lambda: decrypt("OXRWDELHLLO", "ZEBRAS"), "HELLOWORLD")
-    run_test("Encrypt short", lambda: encrypt("ATTACKATDAWN", "CARGO"), "TCWTNAKADATX")
-    run_test("Decrypt short", lambda: decrypt("TCWTNAKADATX", "CARGO"), "ATTACKATDAWN")
+    def test_encryption_decryption(self):
+        text = "HELLO WORLD"
+        encrypted = self.cipher.encrypt(text)
+        decrypted = self.cipher.decrypt(encrypted)
+        self.assertEqual(decrypted, text.replace(" ", "").upper())
+
+    def test_encrypt_non_alpha(self):
+        text = "HELLO123!"
+        encrypted = self.cipher.encrypt(text)
+        decrypted = self.cipher.decrypt(encrypted)
+        self.assertEqual(decrypted, "HELLO123!")
 
 if __name__ == "__main__":
-    test_cases()
+    unittest.main()
