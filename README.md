@@ -6,7 +6,7 @@
 
 ## Структура
 
-- enhanced_table_cipher.py — логика шифрования
+- TablCipher.py — логика шифрования
 - test_runner.py — самописные юнит-тесты
 - README.md — инструкция
 - main.py - проверка на работу файла
